@@ -4,15 +4,22 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 OS="$(uname -s)"
 
 link_zsh () {
+    echo 
     echo "Linking files"
+    echo
     for rcfile in $DIR/runcoms/[!README.md]*; do
         ln -sh $rcfile $HOME/.$(basename $rcfile)
     done
+
+    if [[ $(basename $SHELL) != "zsh" ]]; then
+        chsh -s /bin/zsh
+    # else
+        # source $HOME/.zshrc
+    fi
 }
 
 if type zsh >/dev/null 2>&1; then
     link_zsh
-    chsh -s /bin/zsh
 else
     echo "No zsh installed!"
     if [ -n "$BASH_VERSION" ]; then
@@ -21,10 +28,7 @@ else
             mv $HOME/.bashrc $HOME/.bashrc.backup
         fi
         echo "Linking to .bashrc"
-        if [[ $OS == 'Darwin' ]]; then
-            ln -sh $DIR/runcoms/zshrc $HOME/.bashrc
-        elif [[ $OS == 'Linux' ]]; then
-            ln -sn $DIR/runcoms/zshrc $HOME/.bashrc
-        fi
+        ln -sn $DIR/runcoms/zshrc $HOME/.bashrc
+        source $HOME/.bashrc
     fi
 fi

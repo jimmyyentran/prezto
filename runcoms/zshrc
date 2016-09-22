@@ -5,34 +5,22 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+SH=$(basename $SHELL)
+
+if type nvim >/dev/null 2>&1; then
+    export EDITOR='nvim'
+    export VISUAL='nvim'
+elif type vim >/dev/null 2>&1; then
+    export EDITOR='vim'
+    export VISUAL='vim'
+else
+    export EDITOR='vi'
+    export VISUAL='vi'
 fi
 
-# Customize to your needs...
-
-# OS dependent
-case "$(uname -s)" in
-    Darwin)
-        # enable ctrl
-        bindkey -e
-
-        source /usr/local/bin/virtualenvwrapper.sh
-        ;;
-    Linux)
-        alias open='gnome-open'
-        ;;
-esac
-
-
-# tabs -4
-
-# EDITOR=vim
-alias v='$EDITOR'
-alias zrc='~/.dotfiles/zsh/'
-alias zr='$EDITOR ~/.zshrc'
-alias vr='$EDITOR ~/.vimrc'
+###########
+# GENERAL #
+###########
 alias lt='ls -lAhtr'
 alias lz='ls -lAS'
 alias q="exit"
@@ -47,32 +35,46 @@ alias ga='git add'
 alias gs='git status'
 alias gd='git diff'
 alias pg='ps aux | grep'
-alias py=python3
-alias ipy=ipython3
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+if [[ $SH == 'zsh' ]]; then
+    # Source Prezto.
+    if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+        source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+    fi
+
+    # enable ctrl
+    bindkey -e
+
+    source /usr/local/bin/virtualenvwrapper.sh
+    alias open='gnome-open'
+    alias v='$EDITOR'
+    alias zrc='~/.dotfiles/zsh/'
+    alias zr='$EDITOR ~/.zshrc'
+    alias vr='$EDITOR ~/.vimrc'
+    alias py=python3
+    alias ipy=ipython3
+    alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+    alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+    if type colordiff >/dev/null 2>&1; then
+        alias diff='colordiff'
+    fi
+
+    #Hierarchy Viewer Variable (Android Studios)
+    export ANDROID_HVPROTO=ddm
+
+    export NODE_PATH=/usr/local/lib/node_modules/
+
+    #executable scripts
+    export set PATH=$PATH:~/Workspace/scripts
+
+    #set font for octave-gui
+    export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
+
+    #remove -S flag from zprofile default
+    export LESS='-F -g -i -M -R -w -X -z-4'
 
 
-#Hierarchy Viewer Variable (Android Studios)
-export ANDROID_HVPROTO=ddm
-
-export NODE_PATH=/usr/local/lib/node_modules/
-
-#executable scripts
-export set PATH=$PATH:~/Workspace/scripts
-
-#set font for octave-gui
-export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
-
-#remove -S flag from zprofile default
-export LESS='-F -g -i -M -R -w -X -z-4'
-
-
-# tabtab source for yo package
-# uninstall by removing these lines or running `tabtab uninstall yo`
-[[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
-
-envfile="$HOME/.bash/os.`uname`.sh"
-if [ -r $envfile ]; then
-    . $envfile
+    # tabtab source for yo package
+    # uninstall by removing these lines or running `tabtab uninstall yo`
+    [[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
 fi

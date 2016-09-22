@@ -18,17 +18,8 @@ fi
 #
 
 
-if type nvim >/dev/null 2>&1; then
-    export EDITOR='nvim'
-    export VISUAL='nvim'
-elif type vim >/dev/null 2>&1; then
-    export EDITOR='vim'
-    export VISUAL='vim'
-else
-    export EDITOR='vi'
-    export VISUAL='vi'
-fi
-
+export EDITOR='nvim'
+export VISUAL='nvim'
 export PAGER='less'
 
 #
