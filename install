@@ -1,10 +1,25 @@
-#!/bin/zsh
+#!/bin/bash
 
-echo "Linking files"
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-      ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-  done
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "Change shell"
-chsh -s /bin/zsh
+link_zsh () {
+    echo "Linking files"
+    for rcfile in $DIR/runcoms/[!README.md]*; do
+        ln -sh $rcfile $HOME/.$(basename $rcfile)
+    done
+}
+
+if type zsh >/dev/null 2>&1; then
+    link_zsh
+    chsh -s /bin/zsh
+else
+    echo "No zsh installed!"
+    if [ -n "$BASH_VERSION" ]; then
+        echo "Linking to .bashrc"
+        if [ -f $HOME/.bashrc ]; then
+            echo "Backup current .bashrc to .bashrc.backup"
+            mv $HOME/.bashrc $HOME/.bashrc.backup
+        fi
+        ln -sh $DIR/runcoms/zshrc $HOME/.bashrc
+    fi
+fi

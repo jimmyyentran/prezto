@@ -32,16 +32,17 @@ alias doc="cd ~/Documents"
 alias ws='cd ~/Workspace'
 alias make='nocorrect make' #stop make from autocorrecting things
 alias szsh="source ~/.zshrc" # source zsh
-alias python=python2.7
 alias gaa='git add -A'
 alias ga='git add'
 alias gs='git status'
 alias gd='git diff'
 alias pg='ps aux | grep'
+alias gaac='git add -A && git commit'
 alias py=python3
 alias ipy=ipython3
-# export PYTHONPATH=$PYTHONPATH:/home/jt2/Workspace/python/gdata-python-client/src
-#
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
 source /usr/local/bin/virtualenvwrapper.sh
 
 #Hierarchy Viewer Variable (Android Studios)
@@ -55,8 +56,15 @@ export set PATH=$PATH:~/Workspace/scripts
 #set font for octave-gui
 export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 
+#remove -S flag from zprofile default
+export LESS='-F -g -i -M -R -w -X -z-4'
 
 
 # tabtab source for yo package
 # uninstall by removing these lines or running `tabtab uninstall yo`
 [[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
+
+envfile="$HOME/.bash/os.`uname`.sh"
+if [ -r $envfile ]; then
+    . $envfile
+fi
