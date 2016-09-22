@@ -12,7 +12,6 @@ fi
 
 # Customize to your needs...
 
-
 # OS dependent
 case "$(uname -s)" in
     Darwin)
@@ -48,7 +47,6 @@ alias ga='git add'
 alias gs='git status'
 alias gd='git diff'
 alias pg='ps aux | grep'
-alias gaac='git add -A && git commit'
 alias py=python3
 alias ipy=ipython3
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
