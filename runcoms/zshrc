@@ -12,8 +12,20 @@ fi
 
 # Customize to your needs...
 
-# enable ctrl
-bindkey -e
+
+# OS dependent
+case "$(uname -s)" in
+    Darwin)
+        # enable ctrl
+        bindkey -e
+
+        source /usr/local/bin/virtualenvwrapper.sh
+        ;;
+    Linux)
+        alias open='gnome-open'
+        ;;
+esac
+
 
 # tabs -4
 
@@ -24,7 +36,6 @@ alias zr='$EDITOR ~/.zshrc'
 alias vr='$EDITOR ~/.vimrc'
 alias lt='ls -lAhtr'
 alias lz='ls -lAS'
-alias gno='gnome-open'
 alias q="exit"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
@@ -43,7 +54,6 @@ alias ipy=ipython3
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 
-source /usr/local/bin/virtualenvwrapper.sh
 
 #Hierarchy Viewer Variable (Android Studios)
 export ANDROID_HVPROTO=ddm

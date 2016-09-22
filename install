@@ -15,11 +15,11 @@ if type zsh >/dev/null 2>&1; then
 else
     echo "No zsh installed!"
     if [ -n "$BASH_VERSION" ]; then
-        echo "Linking to .bashrc"
         if [ -f $HOME/.bashrc ]; then
             echo "Backup current .bashrc to .bashrc.backup"
             mv $HOME/.bashrc $HOME/.bashrc.backup
         fi
+        echo "Linking to .bashrc"
         ln -sh $DIR/runcoms/zshrc $HOME/.bashrc
     fi
 fi
