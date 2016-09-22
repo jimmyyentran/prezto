@@ -23,7 +23,8 @@ else
         echo "Linking to .bashrc"
         if [[ $OS == 'Darwin' ]]; then
             ln -sh $DIR/runcoms/zshrc $HOME/.bashrc
-        elif [[ $OS == 'Linux' ]]
+        elif [[ $OS == 'Linux' ]]; then
             ln -sn $DIR/runcoms/zshrc $HOME/.bashrc
+        fi
     fi
 fi
