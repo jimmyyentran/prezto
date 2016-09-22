@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+OS="$(uname -s)"
 
 link_zsh () {
     echo "Linking files"
@@ -20,6 +21,9 @@ else
             mv $HOME/.bashrc $HOME/.bashrc.backup
         fi
         echo "Linking to .bashrc"
-        ln -sh $DIR/runcoms/zshrc $HOME/.bashrc
+        if [[ $OS == 'Darwin' ]]; then
+            ln -sh $DIR/runcoms/zshrc $HOME/.bashrc
+        elif [[ $OS == 'Linux' ]]
+            ln -sn $DIR/runcoms/zshrc $HOME/.bashrc
     fi
 fi
