@@ -8,10 +8,11 @@ link_zsh () {
     echo "Linking files"
     echo
     for rcfile in $DIR/runcoms/[!README.md]*; do
-        ln -sh $rcfile $HOME/.$(basename $rcfile)
+        ln -s $rcfile $HOME/.$(basename $rcfile)
     done
 
     if [[ $(basename $SHELL) != "zsh" ]]; then
+        echo "Changing Shell"
         chsh -s /bin/zsh
     # else
         # source $HOME/.zshrc
