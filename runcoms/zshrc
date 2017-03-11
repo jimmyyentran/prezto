@@ -31,11 +31,9 @@ if [[ $SH == 'zsh' ]]; then
     # enable ctrl
     bindkey -e
 
-    alias v='$EDITOR'
     alias szsh="source ~/.zshrc" # source zsh
     alias zrc='~/.dotfiles/zsh/'
     alias zr='$EDITOR ~/.zshrc'
-    alias vr='$EDITOR ~/.vimrc'
 fi
 
 ###########
@@ -88,6 +86,8 @@ export LESS='-F -g -i -M -R -w -X -z-4'
 
 
 # Apply these aliases after source init.zsh
+alias v='$EDITOR'
+alias vr='$EDITOR ~/.vimrc'
 alias lt='ls -lAhtr'
 alias lz='ls -lAS'
 alias q="exit"
