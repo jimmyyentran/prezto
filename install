@@ -11,13 +11,14 @@ link_zsh () {
         ln -s $rcfile $HOME/.$(basename $rcfile)
     done
 
-    if [[ $(basename $0) == "bash" ]]; then
+    echo "$(basename $0)"
+
+    if [[ $(basename $SHELL) == "bash" ]]; then
         echo "Curent shell is bash. Appending to zsh to .profile"
         echo "export SHELL=/bin/zsh" >> ~/.profile
         echo "exec /bin/zsh -l" >> ~/.profile
-        # chsh -s /bin/zsh
-    # else
-        # source $HOME/.zshrc
+
+        echo "Please relog now"
     fi
 }
 
