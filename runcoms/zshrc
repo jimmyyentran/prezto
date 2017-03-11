@@ -6,6 +6,7 @@
 #
 
 SH=$(basename $SHELL)
+OS=$(uname)
 
 if type nvim >/dev/null 2>&1; then
     export EDITOR='nvim'
@@ -18,9 +19,9 @@ else
     export VISUAL='vi'
 fi
 
-###########
-# GENERAL #
-###########
+#######
+# ZSH #
+#######
 if [[ $SH == 'zsh' ]]; then
     # Source Prezto.
     if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -30,40 +31,61 @@ if [[ $SH == 'zsh' ]]; then
     # enable ctrl
     bindkey -e
 
-    #source /usr/local/bin/virtualenvwrapper.sh
-    source ~/.local/bin/virtualenvwrapper.sh
-    alias open='gnome-open'
     alias v='$EDITOR'
+    alias szsh="source ~/.zshrc" # source zsh
     alias zrc='~/.dotfiles/zsh/'
     alias zr='$EDITOR ~/.zshrc'
     alias vr='$EDITOR ~/.vimrc'
-    alias py=python3
-    alias ipy=ipython3
+fi
+
+###########
+# MAC OSX #
+###########
+if [[ $OS == 'Darwin' ]]; then
     alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
     alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-    if type colordiff >/dev/null 2>&1; then
-        alias diff='colordiff'
-    fi
-
-    #Hierarchy Viewer Variable (Android Studios)
-    export ANDROID_HVPROTO=ddm
-
-    export NODE_PATH=/usr/local/lib/node_modules/
-
-    #executable scripts
-    export set PATH=$PATH:~/Workspace/scripts
-
-    #set font for octave-gui
-    export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
-
-    #remove -S flag from zprofile default
-    export LESS='-F -g -i -M -R -w -X -z-4'
-
-
-    # tabtab source for yo package
-    # uninstall by removing these lines or running `tabtab uninstall yo`
-    [[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jimmytran/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jimmytran/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jimmytran/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jimmytran/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+#########
+# Linux #
+#########
+if [[ $OS == 'Linux' ]]; then
+    alias open='gnome-open'
+fi
+
+if type colordiff >/dev/null 2>&1; then
+    alias diff='colordiff'
+fi
+
+# Virtualenv
+if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+if [[ -a ~/.local/bin/virtualenvwrapper.sh ]]; then
+    source ~/.local/bin/virtualenvwrapper.sh
+fi
+
+
+#Hierarchy Viewer Variable (Android Studios)
+export ANDROID_HVPROTO=ddm
+export NODE_PATH=/usr/local/lib/node_modules/
+#executable scripts
+export set PATH=$PATH:~/Workspace/scripts
+#set font for octave-gui
+export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
+#remove -S flag from zprofile default
+export LESS='-F -g -i -M -R -w -X -z-4'
+# tabtab source for yo package
+# uninstall by removing these lines or running `tabtab uninstall yo`
+[[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
+
+
 
 # Apply these aliases after source init.zsh
 alias lt='ls -lAhtr'
@@ -74,17 +96,26 @@ alias dt="cd ~/Desktop"
 alias doc="cd ~/Documents"
 alias ws='cd ~/Workspace'
 alias make='nocorrect make' #stop make from autocorrecting things
-alias szsh="source ~/.zshrc" # source zsh
 alias gaa='git add -A'
 alias ga='git add'
 alias gs='git status'
 alias gd='git diff'
 alias pg='ps aux | grep'
+alias py=python2
+alias ipy=ipython2
+alias pipi='pip install'
+alias pips='pip show'
+alias pipl='pip list'
+alias pipu='pip install --upgrade'
+alias pipun='pip uninstall'
 
-# cuda libraries
+########
+# CUDA #
+########
 if [ -d "/usr/local/cuda" ]; then
     export CUDA_HOME=/usr/local/cuda
     export CUDA_ROOT=$CUDA_HOME
     export PATH=$PATH:$CUDA_ROOT/bin
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/extras/CUPTI/lib64
 fi
+
