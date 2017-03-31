@@ -100,6 +100,7 @@ alias gaa='git add -A'
 alias ga='git add'
 alias gs='git status'
 alias gd='git diff'
+alias gpull='git pull'
 alias pg='ps aux | grep'
 alias py=python2
 alias ipy=ipython2
@@ -108,6 +109,11 @@ alias pips='pip show'
 alias pipl='pip list'
 alias pipu='pip install --upgrade'
 alias pipun='pip uninstall'
+alias tc='$EDITOR ~/.tmux.conf'
+
+function gac() {
+    git commit -a -m "$1"
+}
 
 ########
 # CUDA #
