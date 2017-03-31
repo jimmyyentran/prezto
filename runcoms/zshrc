@@ -96,8 +96,6 @@ export LESS='-F -g -i -M -R -w -X -z-4'
 # uninstall by removing these lines or running `tabtab uninstall yo`
 [[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
 
-
-
 # Apply these aliases after source init.zsh
 alias v='$EDITOR'
 alias vr='$EDITOR ~/.vimrc'
