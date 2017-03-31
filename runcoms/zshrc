@@ -45,7 +45,7 @@ if [[ $SH == 'zsh' ]]; then
 
     export KEYTIMEOUT=1
 
-    alias szsh="source ~/.zshrc" # source zsh
+    alias szsh="source ~/.zshrc"
     alias zrc='~/.dotfiles/zsh/'
     alias zr='$EDITOR ~/.zshrc'
 fi
