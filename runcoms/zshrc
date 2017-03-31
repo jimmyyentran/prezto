@@ -112,7 +112,15 @@ alias pipun='pip uninstall'
 alias tc='$EDITOR ~/.tmux.conf'
 
 function gac() {
-    git commit -a -m "$1"
+    git commit -am \""$@"\"
+}
+
+function gc() {
+    git commit -m \"$(echo $@)\"
+}
+
+function txx() {
+    echo \"$(echo $@)\"
 }
 
 ########
