@@ -28,8 +28,22 @@ if [[ $SH == 'zsh' ]]; then
         source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
     fi
 
-    # enable ctrl
-    bindkey -e
+    # Emacs
+    # bindkey -e
+
+    # Vim
+    bindkey -v
+
+    bindkey '^P' up-line-or-search
+    bindkey '^N' down-line-or-search
+    bindkey '^A' beginning-of-line
+    bindkey '^E' end-of-line
+    bindkey '^?' backward-delete-char
+    bindkey '^h' backward-delete-char
+    bindkey '^w' backward-kill-word
+    bindkey '^r' history-incremental-search-backward
+
+    export KEYTIMEOUT=1
 
     alias szsh="source ~/.zshrc" # source zsh
     alias zrc='~/.dotfiles/zsh/'
