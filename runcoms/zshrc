@@ -33,6 +33,41 @@ if [[ $SH == 'zsh' ]]; then
     # Vim
     bindkey -v
 
+    ########################
+    # Additional functions #
+    ########################
+    # https://github.com/zsh-users/zsh/blob/ed4e37e45c2f5761981cdc6027a5d6abc753176a/Functions/Zle/surround
+
+    # Enable select-quoted
+    autoload -U select-quoted
+    zle -N select-quoted
+    for m in visual viopp; do
+        for c in {a,i}{\',\",\`}; do
+        bindkey -M $m $c select-quoted
+        done
+    done
+
+    # Doesn't work?
+    # Enable surround
+    autoload -Uz surround
+    zle -N delete-surround surround
+    zle -N add-surround surround
+    zle -N change-surround surround
+    bindkey -a cs change-surround
+    bindkey -a ds delete-surround
+    bindkey -a ys add-surround
+    bindkey -M visual S add-surround
+
+    # Enable select-bracketed
+    autoload -U select-bracketed
+    zle -N select-bracketed
+    for m in visual viopp; do
+        for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $m $c select-bracketed
+        done
+    done
+
+
     bindkey '^P' up-line-or-search
     bindkey '^N' down-line-or-search
     bindkey '^A' beginning-of-line
@@ -43,6 +78,7 @@ if [[ $SH == 'zsh' ]]; then
     bindkey '^r' history-incremental-search-backward
     bindkey '^B' backward-char
     bindkey '^F' forward-char
+
 
     export KEYTIMEOUT=1
 
