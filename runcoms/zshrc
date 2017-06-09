@@ -166,6 +166,7 @@ alias pipl='pip list'
 alias pipu='pip install --upgrade'
 alias pipun='pip uninstall'
 alias tc='$EDITOR ~/.tmux.conf'
+alias ipj='jupyter console --existing'
 
 ########
 # CUDA #
