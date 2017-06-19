@@ -167,6 +167,7 @@ alias pipu='pip install --upgrade'
 alias pipun='pip uninstall'
 alias tc='$EDITOR ~/.tmux.conf'
 alias ipj='jupyter console --existing'
+alias td='tmux detach -a'
 
 ########
 # CUDA #
@@ -181,3 +182,28 @@ fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Git add, commit, and push the message
+gacp(){
+    git add -A
+    git commit -m $1
+    git push
+}
+
+grename(){
+    git filter-branch -f --env-filter '
+    OLD_EMAIL="$1"
+    CORRECT_NAME="Jimmy Tran"
+    CORRECT_EMAIL=jimmyytran@gmail.com"
+    if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+    then
+        export GIT_COMMITTER_NAME="$CORRECT_NAME"
+        export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+    fi
+    if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+    then
+        export GIT_AUTHOR_NAME="$CORRECT_NAME"
+        export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+    fi
+    ' --tag-name-filter cat -- --branches --tags
+}
