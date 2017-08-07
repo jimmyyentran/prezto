@@ -93,6 +93,8 @@ fi
 if [[ $OS == 'Darwin' ]]; then
     alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
     alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+    alias mysql=/usr/local/mysql/bin/mysql
+    alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -103,6 +105,10 @@ if [ -f '/Users/jimmytran/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then
 
 if [ -d '/Users/jimmytran/.local/powerline/scripts' ]; then
     export PATH=~/.local/powerline/scripts:$PATH
+; fi
+
+if [ -d '/usr/local/mysql/bin' ]; then
+    export PATH=/usr/local/mysql/bin:$PATH
 ; fi
 
 #########
@@ -140,6 +146,9 @@ export LESS='-F -g -i -M -R -w -X -z-4'
 # uninstall by removing these lines or running `tabtab uninstall yo`
 [[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
 
+# added by Anaconda3 4.4.0 installer
+# export PATH="/Users/jimmytran/anaconda3/bin:$PATH"
+
 # Apply these aliases after source init.zsh
 alias v='$EDITOR'
 alias vr='$EDITOR ~/.vimrc'
@@ -158,8 +167,8 @@ alias gd='git diff'
 alias gpull='git pull'
 alias gac='git commit -am'
 alias pg='ps aux | grep'
-alias py=python2
-alias ipy=ipython2
+# alias py=python2
+# alias ipy=ipython2
 alias pipi='pip install'
 alias pips='pip show'
 alias pipl='pip list'
@@ -206,4 +215,20 @@ grename(){
         export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
     fi
     ' --tag-name-filter cat -- --branches --tags
+}
+
+launchctlFind () {
+    LaunchctlPATHS=( \
+        ~/Library/LaunchAgents \
+        /Library/LaunchAgents \
+        /Library/LaunchDaemons \
+        /System/Library/LaunchAgents \
+        /System/Library/LaunchDaemons \
+    )
+
+    for curPATH in "${LaunchctlPATHS[@]}"
+    do
+        grep -r "$curPATH" -e "$1"
+    done
+    return 0;
 }
