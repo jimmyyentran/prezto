@@ -232,3 +232,6 @@ launchctlFind () {
     done
     return 0;
 }
+
+workon crypto
+cd ~/Workspace/crypto
