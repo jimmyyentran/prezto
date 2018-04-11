@@ -13,13 +13,14 @@ link_zsh () {
 
     echo "$(basename $0)"
 
-    if [[ $(basename $SHELL) == "bash" ]]; then
-        echo "Curent shell is bash. Appending to zsh to .profile"
-        echo "export SHELL=/bin/zsh" >> ~/.profile
-        echo "exec /bin/zsh -l" >> ~/.profile
+    # Don't do anything to profile
+    # if [[ $(basename $SHELL) == "bash" ]]; then
+        # echo "Curent shell is bash. Appending to zsh to .profile"
+        # echo "export SHELL=/bin/zsh" >> ~/.profile
+        # echo "exec /bin/zsh -l" >> ~/.profile
 
-        echo "Please relog now"
-    fi
+        # echo "Please relog now"
+    # fi
 }
 
 if type zsh >/dev/null 2>&1; then
