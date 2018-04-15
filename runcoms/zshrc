@@ -125,12 +125,18 @@ if type colordiff >/dev/null 2>&1; then
 fi
 
 # Virtualenv
+export WORKON_HOME=$HOME/.virtualenvs/
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/python3
+
 if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
     source /usr/local/bin/virtualenvwrapper.sh
 fi
-# if [[ -f ~/.local/bin/virtualenvwrapper.sh ]]; then
-    # source ~/.local/bin/virtualenvwrapper.sh
-# fi
+
+# Sometimes, it's installed in local
+if [[ -f ~/.local/bin/virtualenvwrapper.sh ]]; then
+    source ~/.local/bin/virtualenvwrapper.sh
+fi
 
 
 #Hierarchy Viewer Variable (Android Studios)
