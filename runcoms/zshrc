@@ -239,6 +239,14 @@ launchctlFind () {
     return 0;
 }
 
+# PyEnv
+# https://github.com/pyenv/pyenv-installer#installation--update--uninstallation
+export PATH=~/.pyenv/bin:$PATH
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 # optional
 # workon crypto
 # cd ~/Workspace/crypto
+#
+
