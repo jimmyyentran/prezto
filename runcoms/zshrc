@@ -115,7 +115,8 @@ if [ -d '/usr/local/mysql/bin' ]; then
 # Linux #
 #########
 if [[ $OS == 'Linux' ]]; then
-    alias open='gnome-open'
+    # alias open='gnome-open'
+    alias open='xdg-open'
     alias screenOff='sudo vbetool dpms off'
     alias screenOn='sudo vbetool dpms on'
 fi
