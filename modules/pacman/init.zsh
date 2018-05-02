@@ -20,6 +20,7 @@ fi
 
 # Get the Pacman frontend.
 zstyle -s ':prezto:module:pacman' frontend '_pacman_frontend'
+_yaourt_='yaourt'
 
 if (( $+commands[$_pacman_frontend] )); then
   alias pacman="$_pacman_frontend"
@@ -38,9 +39,11 @@ fi
 
 # Pacman.
 alias pac="${_pacman_frontend}"
+alias yao="${_yaourt_}"
 
 # Installs packages from repositories.
-alias paci="${_pacman_sudo}${_pacman_frontend} --sync"
+alias paci="${_pacman_sudo}${_pacman_frontend} --sync --needed"
+alias yaoi="${_yaourt_} --sync --noconfirm"
 
 # Installs packages from files.
 alias pacI="${_pacman_sudo}${_pacman_frontend} --upgrade"
@@ -59,6 +62,7 @@ alias pacQ="${_pacman_frontend} --query --info"
 
 # Searches for packages in the repositories.
 alias pacs="${_pacman_frontend} --sync --search"
+alias yaos="${_yaourt_} --sync --search"
 
 # Searches for packages in the local database.
 alias pacS="${_pacman_frontend} --query --search"

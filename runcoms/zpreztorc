@@ -40,7 +40,9 @@ zstyle ':prezto:load' pmodule \
   'dpkg' \
   'history-substring-search' \
   'syntax-highlighting' \
-  'prompt'
+  'prompt' \
+  'pacman'
+zstyle ':prezto:module:pacman' frontend 'pacman_frontend'
   
 #
 # Autosuggestions

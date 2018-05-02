@@ -77,7 +77,8 @@ if [[ $SH == 'zsh' ]]; then
     bindkey '^w' backward-kill-word
     bindkey '^r' history-incremental-search-backward
     bindkey '^B' backward-char
-    bindkey '^F' forward-char
+    # bindkey '^F' forward-char
+    bindkey '^F' history-incremental-search-forward
 
 
     export KEYTIMEOUT=1
@@ -119,6 +120,8 @@ if [[ $OS == 'Linux' ]]; then
     alias open='xdg-open'
     alias screenOff='sudo vbetool dpms off'
     alias screenOn='sudo vbetool dpms on'
+    alias suspend='systemctl suspend'
+    alias hibernate='systemctl hibernate'
 fi
 
 if type colordiff >/dev/null 2>&1; then
@@ -184,6 +187,7 @@ alias pipun='pip uninstall'
 alias tc='$EDITOR ~/.tmux.conf'
 alias ipj='jupyter console --existing'
 alias td='tmux detach -a'
+alias i3c='vim ~/.config/i3/config'
 
 ########
 # CUDA #
@@ -242,12 +246,22 @@ launchctlFind () {
 
 # PyEnv
 # https://github.com/pyenv/pyenv-installer#installation--update--uninstallation
-export PATH=~/.pyenv/bin:$PATH
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PATH=~/.pyenv/bin:$PATH
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 # optional
 # workon crypto
 # cd ~/Workspace/crypto
 #
 
+# Don't let ranger use defaults
+RANGER_LOAD_DEFAULT_RC=false
+
+# Go
+export GOPATH=~/go
+export PATH="$PATH:$HOME/go/bin"
+
+# Additional bin paths
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
