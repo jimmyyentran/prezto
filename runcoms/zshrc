@@ -122,6 +122,7 @@ if [[ $OS == 'Linux' ]]; then
     alias screenOn='sudo vbetool dpms on'
     alias suspend='systemctl suspend'
     alias hibernate='systemctl hibernate'
+    alias yt='mpsyt'
 fi
 
 if type colordiff >/dev/null 2>&1; then
@@ -130,16 +131,17 @@ fi
 
 # Virtualenv
 export WORKON_HOME=$HOME/.virtualenvs/
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/python3
+# Override the default if want to use other directory
+# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+# export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/python
 
 if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
     source /usr/local/bin/virtualenvwrapper.sh
-fi
-
-# Sometimes, it's installed in local
-if [[ -f ~/.local/bin/virtualenvwrapper.sh ]]; then
+elif [[ -f ~/.local/bin/virtualenvwrapper.sh ]]; then
+    # Sometimes, it's installed in local
     source ~/.local/bin/virtualenvwrapper.sh
+elif [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
+    source /usr/bin/virtualenvwrapper.sh
 fi
 
 
@@ -188,12 +190,21 @@ alias tc='$EDITOR ~/.tmux.conf'
 alias ipj='jupyter console --existing'
 alias td='tmux detach -a'
 alias i3c='vim ~/.config/i3/config'
+alias sys='sudo systemctl'
 
 ########
 # CUDA #
 ########
 if [ -d "/usr/local/cuda" ]; then
     export CUDA_HOME=/usr/local/cuda
+    export CUDA_ROOT=$CUDA_HOME
+    export PATH=$PATH:$CUDA_ROOT/bin
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/extras/CUPTI/lib64
+fi
+
+# Platform dependent. Archlinux location
+if [ -d "/opt/cuda" ]; then
+    export CUDA_HOME=/opt/cuda
     export CUDA_ROOT=$CUDA_HOME
     export PATH=$PATH:$CUDA_ROOT/bin
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/extras/CUPTI/lib64
@@ -265,3 +276,8 @@ export PATH="$PATH:$HOME/go/bin"
 # Additional bin paths
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
+
+# Android
+export ANDROID_HOME=/opt/android-sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export JAVA_HOME=/usr/lib/jvm/java-10-openjdk

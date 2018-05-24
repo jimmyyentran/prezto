@@ -41,7 +41,7 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'syntax-highlighting' \
   'prompt' \
-  'pacman'
+  'pacman' \
 zstyle ':prezto:module:pacman' frontend 'pacman_frontend'
   
 #
