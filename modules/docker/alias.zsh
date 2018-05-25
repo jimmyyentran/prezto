@@ -175,3 +175,10 @@ alias dkcu='docker-compose up'
 alias dkcU='docker-compose up -d'
 alias dkcv='docker-compose version'
 alias dkcx='docker-compose stop'
+
+# Docker Service
+alias dks='docker service'
+alias dksl='docker service logs'
+alias dkslf='docker service logs -f'
+alias dkslft='docker service logs -f --timestamps'
+
