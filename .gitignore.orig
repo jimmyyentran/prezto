@@ -1,0 +1,8 @@
+*.zwc
+*.zwc.old
+modules/*/cache.zsh
+<<<<<<< HEAD
+.DS_Store
+=======
+contrib
+>>>>>>> upstream/master
