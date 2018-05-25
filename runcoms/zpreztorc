@@ -45,6 +45,7 @@ zstyle ':prezto:load' pmodule \
   'syntax-highlighting' \
   'prompt' \
   'pacman' \
+  'docker'
 zstyle ':prezto:module:pacman' frontend 'pacman_frontend'
   
 #
