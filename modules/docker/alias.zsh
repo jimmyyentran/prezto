@@ -181,4 +181,5 @@ alias dks='docker service'
 alias dksl='docker service logs'
 alias dkslf='docker service logs -f'
 alias dkslft='docker service logs -f --timestamps'
+alias dksls='docker service ls'
 
