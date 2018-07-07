@@ -258,6 +258,10 @@ launchctlFind () {
     return 0;
 }
 
+hs () {
+    grep "$1" ~/.zhistory
+}
+
 # PyEnv
 # https://github.com/pyenv/pyenv-installer#installation--update--uninstallation
 # export PATH=~/.pyenv/bin:$PATH
