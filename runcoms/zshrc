@@ -194,6 +194,7 @@ alias i3c='vim ~/.config/i3/config'
 alias sys='sudo systemctl'
 alias aliasg='alias | grep'
 alias ra='ranger'
+alias tailf='tail -f'
 
 ########
 # CUDA #
