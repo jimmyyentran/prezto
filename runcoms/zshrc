@@ -195,6 +195,7 @@ alias sys='sudo systemctl'
 alias aliasg='alias | grep'
 alias ra='ranger'
 alias tailf='tail -f'
+alias hv='$EDITOR ~/.zhistory'
 
 ########
 # CUDA #
