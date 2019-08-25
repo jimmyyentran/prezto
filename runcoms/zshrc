@@ -117,8 +117,8 @@ if [ -d '/usr/local/mysql/bin' ]; then
 #########
 if [[ $OS == 'Linux' ]]; then
     # alias open='gnome-open'
-    # alias open='xdg-open'
-    alias open='mimeo' # Better alternative to xdg-open
+    alias open='xdg-open'
+    # alias open='mimeo' # Better alternative to xdg-open
     alias screenOff='sudo vbetool dpms off'
     alias screenOn='sudo vbetool dpms on'
     alias suspend='systemctl suspend'
@@ -154,7 +154,7 @@ export set PATH=$PATH:~/Workspace/scripts
 #set font for octave-gui
 export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 #remove -S flag from zprofile default
-export LESS='-F -g -i -M -R -w -X -z-4'
+export LESS='-F -g -i -M -R -w -X -z-4 j20' # j to search easier
 # tabtab source for yo package
 # uninstall by removing these lines or running `tabtab uninstall yo`
 [[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
@@ -191,6 +191,7 @@ alias tc='$EDITOR ~/.tmux.conf'
 alias ipj='jupyter console --existing'
 alias td='tmux detach -a'
 alias i3c='vim ~/.config/i3/config'
+alias i3b='vim ~/.i3blocks.conf'
 alias sys='sudo systemctl'
 alias aliasg='alias | grep'
 alias ra='ranger'
@@ -263,6 +264,8 @@ launchctlFind () {
 hs () {
     grep "$1" ~/.zhistory
 }
+
+findfile() { find . -type f -iname "$1" }
 
 # PyEnv
 # https://github.com/pyenv/pyenv-installer#installation--update--uninstallation
