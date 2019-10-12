@@ -179,6 +179,8 @@ alias gs='git status'
 alias gd='git diff'
 alias gpull='git pull'
 alias gac='git commit -am'
+alias gdh='git diff "HEAD^..HEAD"'
+alias gdc='git diff --cached'
 alias pg='ps aux | grep'
 alias py=python3
 alias ipy=ipython3
@@ -197,6 +199,8 @@ alias aliasg='alias | grep'
 alias ra='ranger'
 alias tailf='tail -f'
 alias hv='$EDITOR ~/.zhistory'
+alias xdgq='xdg-mime query filetype'
+alias xdgl='ls /usr/share/applications'
 
 ########
 # CUDA #
