@@ -41,11 +41,12 @@ zstyle ':prezto:load' pmodule \
   'archive' \
   'git' \
   'dpkg' \
-  'history-substring-search' \
   'syntax-highlighting' \
+  'history-substring-search' \
   'prompt' \
   'pacman' \
-  'docker'
+  'docker' \
+  'autosuggestions'
 zstyle ':prezto:module:pacman' frontend 'pacman_frontend'
   
 #
